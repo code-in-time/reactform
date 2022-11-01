@@ -5,17 +5,20 @@ import Home from './Home';
 import About from './About';
 import MyForm from './myForm';
 import ReactHookForm from './Reacthookform';
+import DragDrop from './dragDrop';
 
 
 function App() {
   return (
     <div className="App">
       <Link to="/">Home</Link> | <Link to="/about">About</Link> | <Link to="/myform">Myform</Link>| <Link to="/ReactHookForm">React hook form</Link>
+      | <Link to="/DragDrop">DragDrop</Link>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="myform" element={<MyForm />} />
         <Route path="reactHookForm" element={<ReactHookForm />} />
+        <Route path="dragDrop" element={<DragDrop />} />
       </Routes>
     </div>
   );

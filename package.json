@@ -11,7 +11,14 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "react-dnd": "16.0.1",
+    "react-dnd-html5-backend": "16.0.1",
+    "faker": "^5.5.3",
+    "immutability-helper": "^3.1.1",
+    "lodash": "^4.17.21",
+    "react-frame-component": "^5.2.1",
+    "prop-types": "*"
   },
   "scripts": {
     "start": "react-scripts start",
