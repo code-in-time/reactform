@@ -5,6 +5,7 @@ export default function MyForm() {
   const [count, setCount] = useState(0);
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
+  const [going, setGoing] = useState(true);
 
     // Similar to componentDidMount and componentDidUpdate:
     useEffect(() => {
@@ -15,6 +16,7 @@ export default function MyForm() {
 
   return (
     <div>
+      GOING: {going}
 
       <hr />
       {fname} <br />
@@ -25,14 +27,17 @@ export default function MyForm() {
       <button onClick={() => setCount(count + 1)}>
         Click me
       </button>
-
-      <form action="/action_page.php">
-        <label for="fname">First name:</label><br />
+      <br /><br />
+      {/* <form> */}
+        <label htmlFor="fname">First name:</label><br />
         <input type="text" id="fname" name="fname" value={fname} onChange={event => setFname(event.target.value)}/><br />
-        <label for="lname">Last name:</label><br />
+        <label htmlFor="lname">Last name:</label><br />
           <input type="text" id="lname" name="lname" value={lname}  onChange={event => setLname(event.target.value)}/><br /><br />
-          <input type="submit" value="Submit" />
-      </form>
+          <input type="button" value="submit" onClick={() => console.log(`You clicked ${count} times ${fname} ${lname}`)}/>
+          {/* // fix the checkbox */}
+          <input type="checkbox" id="vehicle1" name="vehicle1" checked={going} onChange={event => setGoing(event.target.checked)} />
+          <label htmlFor="vehicle1"> I have a bike</label><br/><br/>
+      {/* </form> */}
     </div>
   );
 }
