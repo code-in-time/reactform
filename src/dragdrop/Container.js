@@ -1,11 +1,10 @@
 import update from 'immutability-helper'
-import { useCallback, useState } from 'react'
+import { useCallback, useState, useEffect } from 'react'
 import { Card } from './Card.js'
 const style = {
   width: 400,
 }
 export const Container = () => {
-  {
     const [cards, setCards] = useState([
       {
         id: 1,
@@ -36,6 +35,10 @@ export const Container = () => {
         text: 'PROFIT',
       },
     ])
+
+    useEffect(()=> {
+      console.log(cards);
+    })
     const moveCard = useCallback((dragIndex, hoverIndex) => {
       setCards((prevCards) =>
         update(prevCards, {
@@ -62,5 +65,4 @@ export const Container = () => {
         <div style={style}>{cards.map((card, i) => renderCard(card, i))}</div>
       </>
     )
-  }
 }
