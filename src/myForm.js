@@ -16,7 +16,7 @@ export default function MyForm() {
 
   return (
     <div>
-      GOING: {going}
+      GOING: {going.toString()}
 
       <hr />
       {fname} <br />
@@ -35,7 +35,7 @@ export default function MyForm() {
           <input type="text" id="lname" name="lname" value={lname}  onChange={event => setLname(event.target.value)}/><br /><br />
           <input type="button" value="submit" onClick={() => console.log(`You clicked ${count} times ${fname} ${lname}`)}/>
           {/* // fix the checkbox */}
-          <input type="checkbox" id="vehicle1" name="vehicle1" checked={going} onChange={event => setGoing(event.target.checked)} />
+          <input type="checkbox" id="vehicle1" name="vehicle1" checked={going} onChange={event => console.log(event.target.checked)} onClick={() => setGoing(!going)} />
           <label htmlFor="vehicle1"> I have a bike</label><br/><br/>
       {/* </form> */}
     </div>
