@@ -12,7 +12,7 @@ function TextMobx(): JSX.Element {
     <div className="TextMobx">
       {/* Home maincounter = {mainCounter}
       <br /><br />
-      <button type="button" class="btn btn-primary" onClick={() => newCount()}>add button</button> */}
+      <button type="button" className="btn btn-primary" onClick={() => newCount()}>add button</button> */}
     </div>
   );
 }
