@@ -1,3 +1,4 @@
+import GameIcon from './gameIcon'
 // import { Routes, Route, Link } from "react-router-dom";
 
 function TicTacToe() {
@@ -8,9 +9,9 @@ function TicTacToe() {
 
   return (
     <div className="TicTacToe">
-      TicTacToe
+      TicTacToe  <GameIcon icon='x'/> <GameIcon icon='o'/>
       <div className="grid-container">
-        <div onClick={() => clickBox(1)} className="grid-item">1<i className="bi bi-x"></i></div>
+        <div onClick={() => clickBox(1)} className="grid-item">1</div>
         <div onClick={() => clickBox(2)} className="grid-item">2</div>
         <div onClick={() => clickBox(3)} className="grid-item">3</div>
         <div onClick={() => clickBox(4)} className="grid-item">4</div>

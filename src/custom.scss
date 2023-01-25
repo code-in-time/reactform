@@ -4,7 +4,9 @@ $body-bg: #999;
 
 // Import Bootstrap and its default variables
 @import '~bootstrap/scss/bootstrap.scss';
+@import '~bootstrap-icons/font/bootstrap-icons.scss';
 // Put any other imports below so that CSS from your
 // components takes precedence over default styles.
 
 @import './tickTacToe/tickTacToe';
+@import './tickTacToe/GameIcon';
