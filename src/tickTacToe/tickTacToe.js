@@ -14,13 +14,22 @@ function TicTacToe() {
 
 
   const convertPlayerToText = (playerTurn) => playerTurn === 0 ? 'human' : 'computer';
+  const winning = [
+    [1, 2, 3],
+    [4, 5.6],
+    [7, 8, 9],
+    [1, 4, 7],
+    [2, 5, 8],
+    [3, 6, 9],
+    [1, 5, 9],
+    [3, 5, 7]]
 
   const disableButton = (id) => clickedBlocksHuman.includes(id) || clickedBlocksComputer.includes(id);
 
   const showIcon = (id) => {
-    if(clickedBlocksHuman.includes(id)) {
+    if (clickedBlocksHuman.includes(id)) {
       return <GameIcon icon='o' />
-    }else if(clickedBlocksComputer.includes(id)) {
+    } else if (clickedBlocksComputer.includes(id)) {
       return <GameIcon icon='x' />
     }
 
