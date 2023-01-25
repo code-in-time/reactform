@@ -6,6 +6,7 @@ import About from './About';
 import MyForm from './myForm';
 import ReactHookForm from './Reacthookform';
 import DragDrop from './dragDrop';
+import TicTacToe from './tickTacToe/tickTacToe';
 
 function App() {
   const [mainCounter, setMainCounter] = useState(1);
@@ -27,6 +28,9 @@ function App() {
         <li className="nav-item">
           <NavLink className="nav-link" to="/DragDrop">DragDrop</NavLink>
         </li>
+        <li className="nav-item">
+          <NavLink className="nav-link" to="/TicTacToe">TicTacToe</NavLink>
+        </li>
       </ul>
       <Routes>
         <Route path="/" element={<Home mainCounter={mainCounter} setMainCounter={setMainCounter}/>} />
@@ -34,6 +38,7 @@ function App() {
         <Route path="myform" element={<MyForm />} />
         <Route path="reactHookForm" element={<ReactHookForm />} />
         <Route path="dragDrop" element={<DragDrop />} />
+        <Route path="TicTacToe" element={<TicTacToe />} />
       </Routes>
     </div>
   );
