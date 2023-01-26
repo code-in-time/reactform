@@ -19,7 +19,6 @@ function TicTacToe() {
   const [winner, setWinner] = useState(null);
 
   const checkForWinner = () => {
-
     for (let i = 0; i < winning.length; i++) {
       const currItem = winning[i];
       console.log(currItem);
@@ -51,7 +50,7 @@ function TicTacToe() {
   const convertPlayerToText = (playerTurn) => playerTurn === 0 ? 'human' : 'computer';
 
 
-  const disableButton = (id) => clickedBlocksHuman.includes(id) || clickedBlocksComputer.includes(id) || winner !== null;
+  const disableButton = (id) => clickedBlocksHuman.includes(id) || clickedBlocksComputer.includes(id) || winner!==null;
 
   const showIcon = (id) => {
     if (clickedBlocksHuman.includes(id)) {
