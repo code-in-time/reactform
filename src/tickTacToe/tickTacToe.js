@@ -10,52 +10,98 @@ const winning = [
   [2, 5, 8],
   [3, 6, 9],
   [1, 5, 9],
-  [3, 5, 7]];
+  [3, 5, 7]
+];
+
+const blocksBase = {
+  1: null,
+  2: null,
+  3: null,
+  4: null,
+  5: null,
+  6: null,
+  7: null,
+  8: null,
+  9: null,
+}
 
 function TicTacToe() {
-  const [playerTurn, setPlayerTurn] = useState(0);
-  const [clickedBlocksHuman, setClickedBlocksHuman] = useState([]);
-  const [clickedBlocksComputer, setClickedBlocksComputer] = useState([]);
+  const [playerTurn, setPlayerTurn] = useState(null);
   const [winner, setWinner] = useState(null);
+  const [blocks, setBlocks] = useState(blocksBase);
 
   const checkForWinner = () => {
+    const arrComp = []
+    const arrHum = []
+
+    for (const property in blocks) {
+      if (blocks[property] === 1) {
+        arrComp.push(parseInt(property));
+      } else if (blocks[property] === 0) {
+        arrHum.push(parseInt(property));
+      }
+    }
+
     for (let i = 0; i < winning.length; i++) {
       const currItem = winning[i];
       console.log(currItem);
       // check human
-      if (currItem.every(r => clickedBlocksHuman.includes(r))) {
-        console.log('Found all of', currItem, 'in', clickedBlocksHuman);
+      if (currItem.every(r => arrHum.includes(r))) {
+        console.log('Found all of', currItem, 'in', arrHum);
         setWinner(0);
         break;
       }
 
       // check computer
-      if (currItem.every(r => clickedBlocksComputer.includes(r))) {
-        console.log('Found all of', currItem, 'in', clickedBlocksComputer);
+      if (currItem.every(r => arrComp.includes(r))) {
+        console.log('Found all of', currItem, 'in', arrComp);
         setWinner(1);
         break;
       }
 
     }
-
   }
 
-  
+
+
+
 
   useEffect(() => {
     checkForWinner();
-  }, [clickedBlocksHuman, clickedBlocksComputer]);
+    setPlayerTurn(playerTurn === 1 ? 0 : 1);
+    console.log('blocks', blocks);
+  }, [blocks]);
+
+  const resetGame =() => {
+    setBlocks(blocksBase);
+    setWinner(null);
+  }
+
+  const renderBlocks = (obj) => {
+    const btnArr = [];
+    for (const property in obj) {
+      const btn = <button
+        key={property}
+        onClick={() => clickBox(property)}
+        className="grid-item"
+        disabled={obj[property] === null && winner === null ? null : true}
+      >{showIcon(obj[property])}
+
+      </button>
+
+      btnArr.push(btn);
+    }
+
+    return btnArr;
+  }
 
 
   const convertPlayerToText = (playerTurn) => playerTurn === 0 ? 'human' : 'computer';
 
-
-  const disableButton = (id) => clickedBlocksHuman.includes(id) || clickedBlocksComputer.includes(id) || winner!==null;
-
   const showIcon = (id) => {
-    if (clickedBlocksHuman.includes(id)) {
+    if (id === 0) {
       return <GameIcon icon='o' />
-    } else if (clickedBlocksComputer.includes(id)) {
+    } else if (id === 1) {
       return <GameIcon icon='x' />
     }
 
@@ -65,32 +111,20 @@ function TicTacToe() {
 
   const clickBox = (id) => {
 
-    if (playerTurn === 0) {
-      setClickedBlocksHuman([...clickedBlocksHuman, id])
+    const updatedArr = { ...blocks };
+    updatedArr[id] = playerTurn;
 
-    } else if (playerTurn === 1) {
-      setClickedBlocksComputer([...clickedBlocksComputer, id])
-    }
-
-    setPlayerTurn(playerTurn === 0 ? 1 : 0);
-    console.log(id);
+    setBlocks(updatedArr)
   }
 
   return (
     <div className="TicTacToe">
       {winner !== null && `THE WINNER IS: ${convertPlayerToText(winner)}`}
-       <hr />
+      {winner !== null && <button onClick={() => resetGame()}>reset</button>}
+      <hr />
       {winner === null && `whos turn: ${convertPlayerToText(playerTurn)}`}
       <div className="grid-container">
-        <button onClick={() => clickBox(1)} disabled={disableButton(1)} className="grid-item">{showIcon(1)}</button>
-        <button onClick={() => clickBox(2)} disabled={disableButton(2)} className="grid-item">{showIcon(2)}</button>
-        <button onClick={() => clickBox(3)} disabled={disableButton(3)} className="grid-item">{showIcon(3)}</button>
-        <button onClick={() => clickBox(4)} disabled={disableButton(4)} className="grid-item">{showIcon(4)}</button>
-        <button onClick={() => clickBox(5)} disabled={disableButton(5)} className="grid-item">{showIcon(5)}</button>
-        <button onClick={() => clickBox(6)} disabled={disableButton(6)} className="grid-item">{showIcon(6)}</button>
-        <button onClick={() => clickBox(7)} disabled={disableButton(7)} className="grid-item">{showIcon(7)}</button>
-        <button onClick={() => clickBox(8)} disabled={disableButton(8)} className="grid-item">{showIcon(8)}</button>
-        <button onClick={() => clickBox(9)} disabled={disableButton(9)} className="grid-item">{showIcon(9)}</button>
+        {renderBlocks(blocks)}
       </div>
     </div>
   );
