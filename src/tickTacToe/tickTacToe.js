@@ -88,10 +88,12 @@ function TicTacToe() {
   }, [blocks]);
 
   useEffect(() => {
-    
+
     if (playerTurn === 1 && winner === null) {
       console.log('playerTurn', playerTurn, ' computer');
-          computerTurn();
+      setTimeout(() => {
+        computerTurn();
+      }, 3000)
     }
   }, [playerTurn]);
 
@@ -105,7 +107,7 @@ function TicTacToe() {
     for (const property in obj) {
       const btn = <button
         key={property}
-        onClick={() => clickBox(property)}
+        onClick={() => playerTurn === 0 && clickBox(property)}
         className="grid-item"
         disabled={obj[property] === null && winner === null ? null : true}
       >{showIcon(obj[property])}
@@ -146,6 +148,13 @@ function TicTacToe() {
       {winner !== null && <button onClick={() => resetGame()}>reset</button>}
       <hr />
       {winner === null && `whos turn: ${convertPlayerToText(playerTurn)}`}
+      {playerTurn === 1 &&
+        <div class="spinner-grow" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      }
+
+
       <div className="grid-container">
         {renderBlocks(blocks)}
       </div>
