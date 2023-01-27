@@ -148,7 +148,7 @@ function TicTacToe() {
       {winner !== null && <button onClick={() => resetGame()}>reset</button>}
       <hr />
       {winner === null && `whos turn: ${convertPlayerToText(playerTurn)}`}
-      {playerTurn === 1 &&
+      {playerTurn === 1 && winner === null &&
         <div class="spinner-grow" role="status">
           <span class="visually-hidden">Loading...</span>
         </div>
