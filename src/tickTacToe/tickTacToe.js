@@ -62,7 +62,22 @@ function TicTacToe() {
     }
   }
 
+  const computerTurn = () => {
+    const result = [];
+    for (const property in blocks) {
+      if (blocks[property] === null) {
+        result.push(parseInt(property));
+      }
+    }
 
+
+    // debugger;
+    const compChoice = result[Math.floor(Math.random() * result.length)];
+    // debugger
+    console.log('computerTurn', compChoice);
+
+    clickBox(compChoice);
+  }
 
 
 
@@ -72,7 +87,15 @@ function TicTacToe() {
     console.log('blocks', blocks);
   }, [blocks]);
 
-  const resetGame =() => {
+  useEffect(() => {
+    
+    if (playerTurn === 1 && winner === null) {
+      console.log('playerTurn', playerTurn, ' computer');
+          computerTurn();
+    }
+  }, [playerTurn]);
+
+  const resetGame = () => {
     setBlocks(blocksBase);
     setWinner(null);
   }
