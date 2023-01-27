@@ -12,6 +12,7 @@ export default function MyForm() {
       // Update the document title using the browser API
       document.title = `You clicked ${count} times ${fname} ${lname}`;
       // Only change when fname runs 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [fname]);
 
   return (

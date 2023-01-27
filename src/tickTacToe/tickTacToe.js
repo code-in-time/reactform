@@ -85,6 +85,7 @@ function TicTacToe() {
     checkForWinner();
     setPlayerTurn(playerTurn === 1 ? 0 : 1);
     console.log('blocks', blocks);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blocks]);
 
   useEffect(() => {
@@ -95,6 +96,7 @@ function TicTacToe() {
         computerTurn();
       }, 3000)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playerTurn]);
 
   const resetGame = () => {
